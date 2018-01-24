@@ -1,0 +1,8 @@
+[Plugin]
+Module = {% lc_hyph_plugin %}
+Name = {% cc_plugin %} Plugin
+Description = Implementation of some plugin idea
+Authors = {% author %} <{% email %}>
+License = {% license %}
+Copyright = Copyright © {% company %}
+Builtin=true

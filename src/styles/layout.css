@@ -1,0 +1,42 @@
+@define-color tango_butter1 #fce94f;
+@define-color tango_butter2 #edd400;
+@define-color tango_butter3 #c4a000;
+@define-color tango_chameleon1 #8ae234;
+@define-color tango_chameleon2 #73d216;
+@define-color tango_chameleon3 #4e9a06;
+@define-color tango_scarlet_red1 #ef2929;
+@define-color tango_scarlet_red2 #cc0000;
+@define-color tango_scarlet_red3 #a40000;
+@define-color tango_aluminum1 #eeeeec;
+@define-color tango_aluminum2 #d3d7cf;
+@define-color tango_aluminum3 #babdb6;
+@define-color tango_aluminum4 #888a85;
+@define-color tango_aluminum5 #555753;
+@define-color tango_aluminum6 #2e3436;
+
+.readout {
+    border-width: 2px;
+    border-color: @tango_aluminum2;
+    border-style: solid;
+    background-color: @tango_aluminum3;
+    color: @tango_scarlet_red3;
+}
+
+GtkSpinButton.rpm-set {
+    border-width: 0px;
+    border-color: @tango_aluminum3;
+}
+
+GtkSpinButton.rpm-unset {
+    border-width: 1px;
+    border-color: @tango_scarlet_red3;
+}
+
+.start {
+    background-image: image(@tango_chameleon3);
+}
+
+.power {
+    background-color: @tango_butter2;
+}
+

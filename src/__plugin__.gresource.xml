@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/coanda/dactl/plugins/__hy_plugin__">
+    <file preprocess="xml-stripblanks">ui/control.ui</file>
+    <file>styles/layout.css</file>
+  </gresource>
+</gresources>
