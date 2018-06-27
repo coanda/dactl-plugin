@@ -8,35 +8,10 @@
 
   <!-- Plugin configuration -->
   <plugins>
-    <plugin id="sinamics-s0" type="sinamics_s">
-      <ui:object id="sinamics-s-plcctrl0" type="plugin-control" subtype="plc" parent="box0-1-0">
+    <plugin id="plugin-template0" type="plugin_template">
+      <ui:object id="plugin-template-plcctrl0" type="plugin-control" parent="box0-1-0">
         <property name="plc-ref">plc0</property>
       </ui:object>
-      <ui:object id="sinamics-s-plcctrl0" type="plugin-control" subtype="enable" parent="box0-1-0">
-        <property name="plc-ref">plc0</property>
-        <property name="device-address">0</property>
-      </ui:object>
-      <ui:object id="sinamics-s-speedctl0" type="plugin-control" subtype="speed" parent="box0-1-0">
-        <property name="plc-ref">plc0</property>
-        <property name="device-address">0</property>
-      </ui:object>
-      <object id="plc0" type="plc">
-        <property name="modbus-address">192.168.168.100</property>
-        <property name="sampling-interval-ms">100</property>
-        <object id="motor0" type="motor">
-          <property name="address">0</property>
-          <property name="homing-torque">400</property>
-          <property name="homing-speed">0.005</property>
-          <property name="maximum-torque">5</property>
-          <property name="maximum-speed">1200</property>
-          <property name="jerk">10000</property>
-          <property name="acceleration">15</property>
-          <property name="deceleration">3</property>
-          <property name="parameter-generic" pvalue="1080">100.0</property>
-          <property name="ref" type="channel-speed">/speed-motor0</property>
-          <property name="ref" type="channel-torque">/torque-motor0</property>
-        </object>
-      </object>
     </plugin>
   </plugins>
 
@@ -62,20 +37,6 @@
             <ui:property name="expand">false</ui:property>
             <ui:property name="fill">false</ui:property>
           </ui:object>
-          <ui:object id="box0-1-1" type="box">
-            <ui:property name="orientation">vertical</ui:property>
-            <ui:property name="spacing">5</ui:property>
-            <ui:property name="expand">false</ui:property>
-            <ui:property name="fill">false</ui:property>
-            <ui:object id="ai-ctl0" type="ai" ref="/speed-motor0"></ui:object>
-            <ui:object id="ai-ctl1" type="ai" ref="/torque-motor0"></ui:object>
-          </ui:object>
-        </ui:object>
-        <ui:object id="box0-2" type="box">
-          <ui:property name="orientation">vertical</ui:property>
-          <ui:property name="spacing">5</ui:property>
-          <ui:property name="expand">false</ui:property>
-          <ui:property name="fill">false</ui:property>
         </ui:object>
       </ui:object>
     </ui:object>
@@ -84,43 +45,7 @@
 
   <!-- Data acquisition configuration -->
   <cld:objects>
-    <cld:object id="speed-motor0" type="channel" ctype="analog" direction="input">
-      <cld:property name="tag">Speed</cld:property>
-      <cld:property name="desc">Speed</cld:property>
-      <cld:property name="calref">/speed_cal</cld:property>
-      <cld:property name="naverage">1</cld:property>
-    </cld:object>
-
-    <cld:object id="speed_cal" type="calibration">
-      <cld:property name="units">RPM</cld:property>
-      <cld:object id="cft0" type="coefficient">
-        <cld:property name="n">0</cld:property>
-        <cld:property name="value">0.000</cld:property>
-      </cld:object>
-      <cld:object id="cft1" type="coefficient">
-        <cld:property name="n">1</cld:property>
-        <cld:property name="value">1.000</cld:property>
-      </cld:object>
-    </cld:object>
-
-    <cld:object id="torque-motor0" type="channel" ctype="analog" direction="input">
-      <cld:property name="tag">Torque</cld:property>
-      <cld:property name="desc">Torque</cld:property>
-      <cld:property name="calref">/torque_cal</cld:property>
-      <cld:property name="naverage">1</cld:property>
-    </cld:object>
-
-    <cld:object id="torque_cal" type="calibration">
-      <cld:property name="units">blah</cld:property>
-      <cld:object id="cft0" type="coefficient">
-        <cld:property name="n">0</cld:property>
-        <cld:property name="value">0.000</cld:property>
-      </cld:object>
-      <cld:object id="cft1" type="coefficient">
-        <cld:property name="n">1</cld:property>
-        <cld:property name="value">1.000</cld:property>
-      </cld:object>
-    </cld:object>
+    <!--Add cld objects here-->
   </cld:objects>
   <!-- End data acquisition configuration -->
 

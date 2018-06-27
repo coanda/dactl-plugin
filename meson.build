@@ -1,4 +1,4 @@
-project('sinamics-s', [ 'c', 'vala' ],
+project('plugin-template', [ 'c', 'vala' ],
           license: 'GPL3+',
           version: '0.1.0',
     meson_version: '>= 0.40.1',
@@ -15,10 +15,11 @@ MICRO_VERSION = version_split[2]
 
 plugin_name = meson.project_name()
 plugin_c_name = plugin_name.underscorify()
+dir_vapi = join_paths(meson.current_source_dir(), 'vapi')
 
 status = [
   '', '',
-  'Dactl SinamicsS Plugin @0@'.format(meson.project_version()),
+  'Dactl Plugin Template @0@'.format(meson.project_version()),
   '', '',
 ]
 
@@ -40,33 +41,47 @@ status += [
   '', ''
 ]
 
+add_project_arguments([
+    '--target-glib', '2.44',
+    '--vapidir', join_paths(meson.current_source_dir(), 'vapi'),
+  ],
+  language: 'vala'
+)
+
 dep_cld = dependency('cld-1.0')
-dep_dactl = dependency('dactl-core-0.3')
-dep_dactl_ui = dependency('dactl-ui-0.3')
+dep_dactl = dependency('libdactl-1.0')
+dep_gee = dependency('gee-0.8')
 dep_gtk = dependency('gtk+-3.0')
 dep_clutter = dependency('clutter-1.0')
 dep_webkit = dependency('webkit2gtk-4.0')
 dep_modbus = dependency('libmodbus')
+dep_peas = dependency('libpeas-1.0')
 dep_xml = dependency('libxml-2.0')
 dep_posix = meson.get_compiler('vala').find_library('posix')
+
+comedi_lib = meson.get_compiler('c').find_library('comedi')
+comedi_vapi = meson.get_compiler('vala').find_library('comedilib', dirs: dir_vapi)
+dep_comedi = declare_dependency(dependencies: [comedi_lib, comedi_vapi])
 
 plugin_deps = [
   dep_cld,
   dep_dactl,
-  dep_dactl_ui,
+  dep_gee,
   dep_gtk,
   dep_clutter,
   dep_webkit,
   dep_modbus,
+  dep_peas,
   dep_xml,
   dep_posix,
+  dep_comedi,
 ]
 
 subst = configuration_data()
 
 # Installation paths
 dir_sysconf = join_paths(get_option('sysconfdir'), 'dactl/plugins', plugin_name)
-dir_plugin = join_paths(get_option('prefix'), get_option('libdir'), 'dactl-0.3/plugins')
+dir_plugin = join_paths(get_option('prefix'), get_option('libdir'), 'dactl/plugins')
 
 subst.set('bindir', join_paths(get_option('prefix'), get_option('bindir')))
 subst.set('sysconfdir', dir_sysconf)

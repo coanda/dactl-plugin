@@ -1,0 +1,8 @@
+[Plugin]
+Module = plugin-template
+Name = PluginTemplate Plugin
+Description = A boiler plate Dactl plugin
+Authors = Stephen Roy <stephen.roy@coanda.ca>
+License = Private
+Copyright = Copyright © Coanda Research and Development
+Builtin=true

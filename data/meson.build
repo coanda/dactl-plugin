@@ -1,6 +1,6 @@
 configure_file(
-          input: 'dactl.xml',
-         output: 'dactl.xml',
+          input: 'config/plugin.xml',
+         output: 'plugin.xml',
   configuration: subst,
         install: true,
     install_dir: dir_sysconf,

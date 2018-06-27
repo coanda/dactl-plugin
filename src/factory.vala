@@ -1,7 +1,7 @@
 /**
  * Plugin UI factory to build objects from configuration data.
  */
-public class Dactl.SinamicsS.Factory : GLib.Object, Dactl.Factory {
+public class Dactl.PluginTemplate.Factory : GLib.Object, Dactl.Factory {
 
     construct {
     }
@@ -36,7 +36,7 @@ public class Dactl.SinamicsS.Factory : GLib.Object, Dactl.Factory {
         Dactl.Object object = null;
 
         switch (type.name ()) {
-            case "DactlSinamicsSControl":
+            case "DactlPluginTemplateControl":
                 break;
             default:
                 throw new Dactl.FactoryError.TYPE_NOT_FOUND (
@@ -60,23 +60,7 @@ public class Dactl.SinamicsS.Factory : GLib.Object, Dactl.Factory {
                 message ("Attempting to construct a plugin control of type `%s'", type);
                 switch (type) {
                     case "plugin-control":
-                        var subtype = node->get_prop ("subtype");
-                        switch (subtype) {
-                            case "speed":
-                                return make_sinamics_s_speed_control (node);
-                            case "enable":
-                                return make_sinamics_s_enable_control (node);
-                            case "plc":
-                                return make_sinamics_s_plc_control (node);
-                            default:
-                                throw new Dactl.FactoryError.TYPE_NOT_FOUND (
-                                    "The type requested is not a known Dactl type");
-                        }
-                    case "plc":
-                        var plc = make_sinamics_s_plc (node);
-                        var plugin = Dactl.SinamicsS.Plugin.instance ();
-                        plugin.add_plc (plc as Dactl.SinamicsS.Plc);
-                        return plc;
+                        return make_plugin_template_control (node);
                     default:
                         throw new Dactl.FactoryError.TYPE_NOT_FOUND (
                             "The type requested is not a known Dactl type");
@@ -87,19 +71,7 @@ public class Dactl.SinamicsS.Factory : GLib.Object, Dactl.Factory {
         return object;
     }
 
-    private Dactl.Object make_sinamics_s_enable_control (Xml.Node *node) {
-        return new Dactl.SinamicsS.EnableControl.from_xml_node (node);
-    }
-
-    private Dactl.Object make_sinamics_s_speed_control (Xml.Node *node) {
-        return new Dactl.SinamicsS.SpeedControl.from_xml_node (node);
-    }
-
-    private Dactl.Object make_sinamics_s_plc_control (Xml.Node *node) {
-        return new Dactl.SinamicsS.PlcControl.from_xml_node (node);
-    }
-
-    private Dactl.Object make_sinamics_s_plc (Xml.Node *node) {
-        return new Dactl.SinamicsS.Plc.from_xml_node (node);
+    private Dactl.Object make_plugin_template_control (Xml.Node *node) {
+        return new Dactl.PluginTemplate.Control.from_xml_node (node);
     }
 }

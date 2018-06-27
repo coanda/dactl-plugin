@@ -1,4 +1,4 @@
-namespace Dactl.SinamicsS {
+namespace Dactl.PluginTemplate {
     [CCode (cheader_filename = "plugin-config.h", cprefix = "PLUGIN_")]
     public extern const string NAME;
 

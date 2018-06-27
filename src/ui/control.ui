@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.20.4 -->
 <interface>
   <requires lib="gtk+" version="3.16"/>
-  <object class="GtkAdjustment" id="adjustment1">
-    <property name="upper">100</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
-  <object class="GtkImage" id="img_connect">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-connect</property>
-  </object>
-  <object class="GtkTextTagTable" id="texttagtable"/>
-  <object class="GtkTextBuffer" id="textbuffer">
-    <property name="tag_table">texttagtable</property>
-    <property name="text" translatable="yes"></property>
-  </object>
-  <!--<template class="DactlSinamicsSPlcControl" parent="GtkBox">-->
-  <template class="DactlSinamicsSPlcControl" parent="DactlSimpleWidget">
+  <!--<template class="DactlPluginTemplateControl" parent="GtkBox">-->
+  <template class="DactlPluginTemplateControl" parent="DactlSimpleWidget">
     <property name="width_request">400</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -41,74 +26,12 @@
             <property name="orientation">vertical</property>
             <property name="spacing">5</property>
             <child>
-              <object class="GtkBox" id="box2">
+              <object class="GtkButton" id="btn_test">
+                <property name="label" translatable="yes">Test Button</property>
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="spacing">5</property>
-                <child>
-                  <object class="GtkBox" id="box3">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="tooltip_text" translatable="yes">The MODBUS messaging status</property>
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkCheckButton" id="btn_busy">
-                        <property name="label" translatable="yes">BUSY</property>
-                        <property name="visible">True</property>
-                        <property name="sensitive">False</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkCheckButton" id="btn_error">
-                        <property name="label" translatable="yes">ERROR</property>
-                        <property name="visible">True</property>
-                        <property name="sensitive">False</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="halign">start</property>
-                        <property name="draw_indicator">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkToggleButton" id="btn_connect">
-                    <property name="label" translatable="yes">Connect</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Connect MODBUS TCP</property>
-                    <property name="image">img_connect</property>
-                    <property name="always_show_image">True</property>
-                    <signal name="toggled" handler="btn_connect_toggled_cb" swapped="no"/>
-                    <style>
-                      <class name="suggested-action"/>
-                    </style>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">2</property>
-                  </packing>
-                </child>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="btn_test_clicked_cb" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -123,15 +46,16 @@
                 <property name="can_focus">True</property>
                 <property name="shadow_type">in</property>
                 <child>
-                  <object class="GtkTextView" id="textview">
+                  <object class="GtkViewport">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="vadjustment">adjustment1</property>
-                    <property name="editable">False</property>
-                    <property name="wrap_mode">word</property>
-                    <property name="cursor_visible">False</property>
-                    <property name="buffer">textbuffer</property>
-                    <property name="input_purpose">digits</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkLabel" id="lbl_test">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="wrap">True</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
@@ -147,7 +71,7 @@
           <object class="GtkLabel" id="label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">PLC Control</property>
+            <property name="label" translatable="yes">User Interface Control</property>
           </object>
         </child>
       </object>
@@ -158,4 +82,13 @@
       </packing>
     </child>
   </template>
+  <object class="GtkAdjustment" id="adjustment1">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkTextTagTable" id="texttagtable"/>
+  <object class="GtkTextBuffer" id="textbuffer">
+    <property name="tag_table">texttagtable</property>
+  </object>
 </interface>

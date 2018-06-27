@@ -1,14 +1,8 @@
-[DBus (name = "org.coanda.Dactl.SinamicsS")]
+[DBus (name = "org.coanda.Dactl.PluginTemplate")]
 public interface Service : Object {
-    /* PLC methods */
-    public abstract int plc_ping () throws Error;
-    public abstract void plc_connect () throws Error;
-    public abstract void plc_disconnect () throws Error;
-    public abstract bool plc_is_connected () throws Error;
-
-    /* getters & setters */
-    public abstract void set_active_plc (string id) throws Error;
-    public abstract string get_active_plc () throws Error;
+    /* methods */
+    public abstract string say_hello ();
+    public abstract void throw_error () throws Error;
 }
 
 public int main (string[] args) {
@@ -17,37 +11,9 @@ public int main (string[] args) {
     Service dbus = null;
     int ret = -1;
 
-    Test.add_data_func ("/dbus/active-plc", () => {
+    Test.add_data_func ("/dbus/say-hello", () => {
         try {
-            dbus.set_active_plc ("plc0");
-            assert (dbus.get_active_plc () == "plc0");
-        } catch (Error e) {
-            assert_not_reached ();
-        }
-    });
-
-    Test.add_data_func ("/dbus/plc/ping", () => {
-        try {
-            int latency = dbus.plc_ping ();
-            assert (latency > 0);
-        } catch (Error e) {
-            assert_not_reached ();
-        }
-    });
-
-    Test.add_data_func ("/dbus/plc/connect", () => {
-        try {
-            dbus.plc_connect ();
-            assert (dbus.plc_is_connected () == true);
-        } catch (Error e) {
-            assert_not_reached ();
-        }
-    });
-
-    Test.add_data_func ("/dbus/plc/disconnect", () => {
-        try {
-            dbus.plc_disconnect ();
-            assert (dbus.plc_is_connected () == false);
+            assert (dbus.say_hello () == "Hello World!");
         } catch (Error e) {
             assert_not_reached ();
         }
@@ -66,8 +32,8 @@ public int main (string[] args) {
                              out child_pid);
 
         dbus = Bus.get_proxy_sync (BusType.SESSION,
-                                   "org.coanda.Dactl.SinamicsS",
-                                   "/org/coanda/dactl/sinamics_s");
+                                   "org.coanda.Dactl.PluginTemplate",
+                                   "/org/coanda/dactl/plugin_template");
 
         ChildWatch.add (child_pid, (pid, status) => {
 			Process.close_pid (pid);

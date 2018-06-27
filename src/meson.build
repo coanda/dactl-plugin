@@ -19,12 +19,8 @@ plugin_sources = [
   'common.vala',
   'dbus-service.vala',
   'factory.vala',
-  'motor.vala',
-  'plc.vala',
   'plugin.vala',
-  'ui/speed-control.vala',
-  'ui/enable-control.vala',
-  'ui/plc-control.vala',
+  'ui/control.vala',
 ]
 
 plugin_deps += link_libconfig
