@@ -18,4 +18,11 @@ meson _build
 sudo ninja -C _build install
 ```
 
+## Rename
 
+In the copied repository you can use the following command to replace strings in files without corrupting
+the git directory.
+
+```sh
+ git grep -l 'plugin_template' | xargs sed -i 's/plugin_template/new_name/g'
+```
